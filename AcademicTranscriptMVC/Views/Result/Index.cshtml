@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Bachelor of Information and Communication Technologies</h3>
+<br />
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.Partial("_createButton")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-list" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
         </td>
     </tr>
 }

@@ -14,6 +14,7 @@ namespace AcademicTranscriptMVC.Controllers
         public ActionResult Index()
         {
             IEnumerable<ResultMVC> resultList;
+
             HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.GetAsync("Result").Result;
             resultList = fetchResult.Content.ReadAsAsync<IEnumerable<ResultMVC>>().Result;
 
