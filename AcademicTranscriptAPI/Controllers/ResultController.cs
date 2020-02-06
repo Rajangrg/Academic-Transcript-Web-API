@@ -39,11 +39,6 @@ namespace AcademicTranscriptAPI.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutResult(int id, Result result)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             if (id != result.Id)
             {
                 return BadRequest();
@@ -74,11 +69,7 @@ namespace AcademicTranscriptAPI.Controllers
         [ResponseType(typeof(Result))]
         public IHttpActionResult PostResult(Result result)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+          
             db.Results.Add(result);
             db.SaveChanges();
 
