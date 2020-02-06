@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AcademicTranscriptDBModelStoreContainer" CdmEntityContainer="AcademicTranscriptDBEntities">
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="AcademicTranscriptDBModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CourseLevel" ColumnName="CourseLevel" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
