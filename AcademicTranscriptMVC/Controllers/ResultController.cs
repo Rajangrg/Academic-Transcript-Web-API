@@ -20,16 +20,35 @@ namespace AcademicTranscriptMVC.Controllers
             return View(resultList);
         }
         //get
-        public ActionResult AddOrEdit()
+        public ActionResult AddOrEdit(int id = 0)
         {
-            return View();
+            if (id == 0)
+            {
+                return View(new ResultMVC());
+            }
+            else
+            {
+                HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.GetAsync("Result/" +id.ToString() ).Result;
+                var resultList = fetchResult.Content.ReadAsAsync<ResultMVC>().Result;
+                return View(resultList);
+            }
         }
 
         [HttpPost]
         public ActionResult AddOrEdit(ResultMVC result)
         {
-            HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.PostAsJsonAsync("Result", result).Result;
-            TempData["SucessMessage"] = "Saved Successfully";
+            if(result.Id == 0)
+            {
+                HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.PostAsJsonAsync("Result", result).Result;
+                TempData["SucessMessage"] = "Saved Successfully";
+            }
+            else
+            {
+                HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.PutAsJsonAsync("Result/", result.Id).Result;
+                TempData["SucessMessage"] = "Update Successfully";
+            }
+
+            
             return RedirectToAction("Index");
         }
     }
