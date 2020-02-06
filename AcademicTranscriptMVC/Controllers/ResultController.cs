@@ -17,8 +17,20 @@ namespace AcademicTranscriptMVC.Controllers
 
             HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.GetAsync("Result").Result;
             resultList = fetchResult.Content.ReadAsAsync<IEnumerable<ResultMVC>>().Result;
-
             return View(resultList);
+        }
+        //get
+        public ActionResult AddOrEdit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddOrEdit(ResultMVC result)
+        {
+            HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.PostAsJsonAsync("Result", result).Result;
+            TempData["SucessMessage"] = "Saved Successfully";
+            return RedirectToAction("Index");
         }
     }
 }

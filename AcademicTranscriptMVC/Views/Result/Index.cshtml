@@ -4,13 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h3>Bachelor of Information and Communication Technologies</h3>
+<h3><b>Bachelor of Information and Communication Technologies</b></h3>
 <br />
 
 <p>
     @Html.Partial("_createButton")
 </p>
-<table class="table">
+
+<table class="table table-condensed table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Code)
@@ -33,32 +34,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Credit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Grade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-            @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-list" })
-            @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
 
 </table>
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SucessMessage"]'
+            if (successMessage != '') {
+                alertify.set('notifier','position', 'top-right');
+                alertify.success(successMessage);
+            }
+        });
+    </script>
+}
