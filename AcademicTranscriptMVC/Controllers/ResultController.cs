@@ -51,5 +51,13 @@ namespace AcademicTranscriptMVC.Controllers
             
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult Delete(int id)
+        {
+            HttpResponseMessage fetchResult = GlobalVariable.WebApiClient.DeleteAsync("Result/"+id.ToString()).Result;
+            TempData["SucessMessage"] = "Deleted Successfully";
+            return RedirectToAction("Index");
+        }
     }
 }

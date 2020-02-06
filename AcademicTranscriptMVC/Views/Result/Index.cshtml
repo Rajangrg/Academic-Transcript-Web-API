@@ -57,7 +57,7 @@
             </td>
             <td>
                 @Html.ActionLink(" ", "AddOrEdit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-                @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                <a  onclick="Delete(@item.Id)"  class="btn btn-danger glyphicon glyphicon-trash"></a>
             </td>
         </tr>
     }
@@ -72,5 +72,11 @@
                 alertify.success(successMessage);
             }
         });
+        function Delete(id) {
+            alertify.confirm('Are you sure you want to delete?', function () {
+                window.location.href = '@Url.Action("Delete", "Result")/' + id;
+            }, null);
+        }
+
     </script>
 }
