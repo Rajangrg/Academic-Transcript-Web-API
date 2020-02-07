@@ -8,63 +8,75 @@
 <br />
 
 <p>
-    @Html.Partial("_createButton")
+    @Html.Partial("_createButton")<br /><br />
+
 </p>
 
-<table class="table table-condensed table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseLevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Credit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Grade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-condensed table-hover" id="demoGrid">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Credit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.ActionLink(" ", "AddOrEdit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-                <a  onclick="Delete(@item.Id)"  class="btn btn-danger glyphicon glyphicon-trash"></a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "AddOrEdit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+                    <a onclick="Delete(@item.Id)" class="btn btn-danger glyphicon glyphicon-trash"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
 @section scripts{
+
+  
     <script>
+      $(document).ready( function () {
+    $('#demoGrid').DataTable();
+} ); 
         $(function () {
             var successMessage = '@TempData["SucessMessage"]'
             if (successMessage != '') {
@@ -73,10 +85,12 @@
             }
         });
         function Delete(id) {
-            alertify.confirm('Are you sure you want to delete?', function () {
+            alertify.confirm('Are you sure you want to delete?','You will not be able to restore the data! ', function () {
                 window.location.href = '@Url.Action("Delete", "Result")/' + id;
             }, null);
         }
+
+
 
     </script>
 }
